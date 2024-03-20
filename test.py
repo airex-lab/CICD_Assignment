@@ -12,4 +12,4 @@ y = np.array([np.where(labels == x) for x in y]).flatten()
 with open("model.pkl", 'rb') as f:
     model = pickle.load(f)
 
-print(model.score(X, y))
+print(round(model.score(X, y), 3))

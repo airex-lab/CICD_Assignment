@@ -1,4 +1,4 @@
-name: Display Model Score
+name: Check Minimum Score
 
 on :
   pull_request:
@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  evaluate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -30,9 +30,9 @@ jobs:
         run:
           python train.py
 
-      - name: Test model and display score
+      - name: Test model
         run: |
           OUTPUT=$(python test.py)
           echo "Score:"
           echo "$OUTPUT"
-
+          if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
