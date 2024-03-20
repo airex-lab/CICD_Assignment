@@ -1,4 +1,4 @@
-name: Display Model Score
+name: Score
 
 on :
   pull_request:
@@ -30,9 +30,9 @@ jobs:
         run:
           python train.py
 
-      - name: Test model and display score
+      - name: Test model
         run: |
           OUTPUT=$(python test.py)
           echo "Score:"
           echo "$OUTPUT"
-
+          if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then exit 1; fi
