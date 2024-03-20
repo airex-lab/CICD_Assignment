@@ -2,20 +2,24 @@ name: Display Model Score
 
 on :
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+    paths-ignore:
+      - 'data/**'
+      - 'requirements.txt'
+      - 'README.md'
+
+permissions:
+  contents: read
 
 jobs:
-  display-model-score:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v3
         with:
-          python-version:3.11
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
