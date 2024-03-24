@@ -1,0 +1,20 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  pull_and_test:
+    runs-on: ubuntu-latest
+    needs: Train
+    steps:
+      - name: Pull Docker Image
+        run: docker pull devarajn/ci_cd_assignment:v1
+
+      - name: Run Tests
+        run: |
+        OUTPUT=$(docker run --rm devarajn/ci_cd_assignment:v1)
+        echo "Score:"
+        echo "$OUTPUT"
+        if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
