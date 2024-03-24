@@ -1,9 +1,6 @@
 name: Train
 
-on:
-  workflow_call:
-  pull_request:
-    branches: [ "main" ]
+on: [workflow_call]
 
 jobs:
   build_and_push:
