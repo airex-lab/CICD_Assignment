@@ -1,10 +1,9 @@
 name: Test
 
 on:
-  pull_request:
   workflow_run:
     workflows: ["Run Train"]
-    branches: [ "main" ]
+    branches: [ "dev" ]
     types:
      - completed
 
