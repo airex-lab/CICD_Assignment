@@ -1,20 +1,20 @@
 name: Test
 
 on:
-  workflow_run:
-    workflows: ["Run Train"]
-    branches: [ "dev" ]
-    types:
-     - completed
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
+  Train:
+      uses: ./.github/workflows/train.yml
+      secrets: inherit
   pull_and_test:
     name: pull_and_test
+    needs: [Train]
     runs-on: ubuntu-latest
     steps:
       - name: Pull Docker Image
         run: docker pull devarajn/ci_cd_assignment:v1
-
       - name: Run Tests
         run: |
           OUTPUT=$(docker run --rm devarajn/ci_cd_assignment:v1)
