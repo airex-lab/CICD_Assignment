@@ -14,5 +14,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and Push Docker Image
         run: |
-          docker build --file Dockerfile1 --tag devarajn/ci_cd_assignment:v1 .
+          docker build --file Dockerfile --tag devarajn/ci_cd_assignment:v1 .
           docker push devarajn/ci_cd_assignment:v1
