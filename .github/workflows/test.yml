@@ -7,7 +7,8 @@ on:
 jobs:
   pull_and_test:
     runs-on: ubuntu-latest
-    needs: Train
+    needs:
+      uses: ./.github/workflows/train.yaml
     steps:
       - name: Pull Docker Image
         run: docker pull devarajn/ci_cd_assignment:v1
