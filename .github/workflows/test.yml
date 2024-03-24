@@ -14,7 +14,7 @@ jobs:
 
       - name: Run Tests
         run: |
-        OUTPUT=$(docker run --rm devarajn/ci_cd_assignment:v1)
-        echo "Score:"
-        echo "$OUTPUT"
-        if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+          OUTPUT=$(docker run --rm devarajn/ci_cd_assignment:v1)
+          echo "Score:"
+          echo "$OUTPUT"
+          if [[ `echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
