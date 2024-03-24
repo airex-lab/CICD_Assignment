@@ -19,3 +19,4 @@ jobs:
         run: |
           docker build --file Dockerfile --tag devarajn/ci_cd_assignment:v1 .
           docker push devarajn/ci_cd_assignment:v1
+
