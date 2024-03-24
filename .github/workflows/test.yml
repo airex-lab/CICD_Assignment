@@ -7,6 +7,7 @@ on:
 jobs:
   Train:
       uses: ./.github/workflows/train.yml
+      secrets: inherit
   pull_and_test:
     name: pull_and_test
     needs: [Train]
