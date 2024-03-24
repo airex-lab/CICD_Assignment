@@ -5,9 +5,12 @@ on:
     branches: [ "main" ]
 
 jobs:
+  Train:
+      uses: ./.github/workflows/train.yaml
   pull_and_test:
+    name: pull_and_test
+    needs: [Train]
     runs-on: ubuntu-latest
-    needs: build_and_push
     steps:
       - name: Pull Docker Image
         run: docker pull devarajn/ci_cd_assignment:v1
