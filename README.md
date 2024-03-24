@@ -1,4 +1,4 @@
-# CICD Assignment
+# CICD Assignment - Devaraj N
 
 ## Introduction
 - This repository contains a `data` folder containing the datasets for training and testing.
