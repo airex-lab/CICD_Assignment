@@ -6,7 +6,10 @@ on:
 
 jobs:
   Train:
-      uses: ./.github/workflows/train.yml
+      uses: ./.github/workflows/train.yaml
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
   pull_and_test:
     name: pull_and_test
     needs: [Train]
@@ -14,7 +17,6 @@ jobs:
     steps:
       - name: Pull Docker Image
         run: docker pull devarajn/ci_cd_assignment:v1
-
       - name: Run Tests
         run: |
           OUTPUT=$(docker run --rm devarajn/ci_cd_assignment:v1)
