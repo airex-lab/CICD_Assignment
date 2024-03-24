@@ -6,7 +6,7 @@ on:
 
 jobs:
   Train:
-      uses: ./.github/workflows/train.yaml
+      uses: ./.github/workflows/train.yml
   pull_and_test:
     name: pull_and_test
     needs: [Train]
