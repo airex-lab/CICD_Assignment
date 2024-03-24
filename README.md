@@ -1,4 +1,4 @@
-# CICD Assignment - Devaraj N
+# CICD Assignment - Devaraj N (First action got passed and second action got failed due to score criteria)
 
 ## Introduction
 - This repository contains a `data` folder containing the datasets for training and testing.
