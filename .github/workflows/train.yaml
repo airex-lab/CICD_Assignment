@@ -23,4 +23,4 @@ jobs:
         context: .
         file:  ./Dockerfile
         push: true
-        tags: ashivamdocker/CICD_assignment:latest
+        tags: ashivamdocker/ci_cd_docker:latest
