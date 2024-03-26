@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.linear_model import SVM
+from sklearn.svm import SVC
 import pickle
 import numpy as np
 
@@ -9,7 +9,7 @@ y = df['Disease'].to_numpy()
 labels = np.sort(np.unique(y))
 y = np.array([np.where(labels == x) for x in y]).flatten()
 
-model = SVM().fit(X, y)
+model = SVC().fit(X, y)
 
 with open("model.pkl", 'wb') as f:
     pickle.dump(model, f)
