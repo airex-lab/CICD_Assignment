@@ -1,0 +1,34 @@
+name: Build and Push Image
+
+on:
+    pull_request:
+        branches: []
+        paths-ignore:
+            - 'data/**'
+            - 'requirements.txt'
+            - 'README.md'
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Build docker image
+              run: |
+                docker build -t "train-test" .
+    push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Tag image
+              run: |
+                docker tag "train-test" abhiseknanda1/local-builds:${{ github.ref_name }}
+            - name: Dockerhub login
+              uses: docker/login-action@v3
+              with:
+                username: ${{ secrets.DOCKERHUB_UNAME }}
+                password: ${{ secrets.DOCKERHUB_SECRET }}
+            - name: Push image
+              run: |
+                docker push abhiseknanda1/local-builds:${{ github.ref_name }}
