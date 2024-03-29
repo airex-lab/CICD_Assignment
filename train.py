@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 import pickle
 import numpy as np
-
+error
 df = pd.read_csv("data/train.csv")
 X = df.drop(columns=['Disease']).to_numpy()
 y = df['Disease'].to_numpy()
