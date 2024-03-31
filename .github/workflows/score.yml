@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build -t Assignment3 .
+        run: docker build -t assignment3 .
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push image to Docker Hub
-        run: docker push Assignment3
+        run: docker push assignment3
 
       - name: Gracefully exit the job
         run: exit 0
@@ -60,7 +60,7 @@ jobs:
     needs: Train
     steps:
       - name: Pull the Docker image from Docker Hub
-        run: docker pull Assignment3
+        run: docker pull assignment3
 
       - name: Run the fetched Docker image
-        run: docker run Assignment3
+        run: docker run assignment3
