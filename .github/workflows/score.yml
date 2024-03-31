@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push image to Docker Hub
-        run: docker push assignment3
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/assignment3
 
       - name: Gracefully exit the job
         run: exit 0
@@ -60,7 +60,7 @@ jobs:
     needs: Train
     steps:
       - name: Pull the Docker image from Docker Hub
-        run: docker pull assignment3
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/assignment3
 
       - name: Run the fetched Docker image
-        run: docker run assignment3
+        run: docker run ${{ secrets.DOCKER_USERNAME }}/assignment3
