@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build and Push Image
         run: |
-          docker login -u gothib -p ${{ secrets.DOCKERHUB_TOKEN }} 
-          docker build -t gothib/CICD_Assignment:latest . 
-          docker push gothib/CICD_Assignment:latest 
+          docker login -u akashiisc -p ${{ secrets.DOCKERHUB_TOKEN }} 
+          docker build -t akashiisc/CICD_Assignment:latest . 
+          docker push akashiisc/CICD_Assignment:latest 
