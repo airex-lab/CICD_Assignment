@@ -1,11 +1,8 @@
 name: Test
 
 on:
-  workflow_run:
-    workflows: Train
+  pull_request:
     branches: [main]
-    types:
-      - completed
 
 jobs:
   test:
