@@ -32,11 +32,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Pull the Docker image
       run: docker pull ${{ secrets.DOCKER_USERNAME }}/assgn3:latest
-    - name: Run the Docker image
-      run: docker run ${{ secrets.DOCKER_USERNAME }}/assgn3:latest
     - name: Check test score
       run: |
-        score=$(docker run assgn3 | tail -1)
+        score=$(docker run ${{ secrets.DOCKER_USERNAME }}/assgn3:latest | tail -1)
         if (( $(echo "$score > 0.50" |bc -l) )); then
           echo "Test passed with score $score"
         else
