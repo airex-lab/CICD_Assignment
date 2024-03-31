@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the Docker image to Docker Hub
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/assgn3:latest
+        docker push assgn3:latest
         exit 0
 
   Test:
