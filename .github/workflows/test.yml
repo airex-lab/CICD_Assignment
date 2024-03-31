@@ -14,6 +14,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Pull and Test Image
         run: |
-          docker login -u your_dockerhub_username -p your_dockerhub_password
-          docker pull your_dockerhub_username/your_repo_name:latest  
-          docker run your_dockerhub_username/your_repo_name:latest
+          docker login -u gothib -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker pull gothib/CICD_Assignment:latest  
+          docker run gothib/CICD_Assignment:latest
