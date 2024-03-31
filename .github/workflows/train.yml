@@ -1,0 +1,16 @@
+name: Train
+
+on: 
+  pull_request:
+    branches: [main] 
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and Push Image
+        run: |
+          docker login -u your_dockerhub_username -p your_dockerhub_password
+          docker build -t your_dockerhub_username/your_repo_name:latest . 
+          docker push your_dockerhub_username/your_repo_name:latest 
