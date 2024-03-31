@@ -1,0 +1,19 @@
+name: Test
+
+on:
+  workflow_run:
+    workflows: ["Train"] 
+    types: 
+      - completed
+
+jobs:
+  pull-and-test:
+    runs-on: ubuntu-latest
+    needs: build-and-push 
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pull and Test Image
+        run: |
+          docker login -u your_dockerhub_username -p your_dockerhub_password
+          docker pull your_dockerhub_username/your_repo_name:latest  
+          docker run your_dockerhub_username/your_repo_name:latest
