@@ -18,12 +18,12 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Pull the Docker image
-      run: docker pull ${{secrets.DOCKER_USERNAME }}/ASSIGNMENT3:latest
+      run: docker pull ${{secrets.DOCKER_USERNAME }}/assgn3:latest
     - name: Run the Docker image
-      run: docker run ASSIGNMENT3:latest
+      run: docker run assgn3:latest
     - name: Check test score
       run: |
-        score=$(docker run ASSIGNMENT3 | tail -1)
+        score=$(docker run assgn3 | tail -1)
         if (( $(echo "$score > 0.50" |bc -l) )); then
           echo "Test passed with score $score"
         else
