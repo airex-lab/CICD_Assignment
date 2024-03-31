@@ -18,9 +18,9 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Pull the Docker image
-      run: docker pull ASSIGNMENT3
+      run: docker pull ${{secrets.DOCKER_USERNAME }}/ASSIGNMENT3:latest
     - name: Run the Docker image
-      run: docker run ASSIGNMENT3
+      run: docker run ASSIGNMENT3:latest
     - name: Check test score
       run: |
         score=$(docker run ASSIGNMENT3 | tail -1)
