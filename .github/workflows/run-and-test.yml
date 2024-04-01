@@ -1,0 +1,39 @@
+name: Run and Test Docker Image
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  run-and-test:
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && success() }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Pull Docker image
+        run: docker pull hrsuhas15/runtest:latest
+
+      - name: Run Docker container
+        run: docker run hrsuhas15/runtest:latest
+
+      # Check the output score
+      - name: Get output score
+        id: check_score
+        run: |
+          OUTPUT=$(docker logs $(docker ps -lq))
+          echo "::set-output name=score::$OUTPUT"
+      
+      - name: Check score
+        run: |
+          if [ $(echo "${{ steps.check_score.outputs.score }}" | awk '{print $NF}') -gt 0.50 ]; then
+            echo "Score is greater than 0.50"
+            exit 0
+          else
+            echo "Score is not greater than 0.50"
+            exit 1
+          fi
