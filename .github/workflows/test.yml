@@ -41,11 +41,14 @@ jobs:
                     echo "$OUTPUT"
                     if [[ `echo "$OUTPUT 0.30" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
         
+    result:
+        runs-on: ubuntu-latest
+        steps:
             - 
-                name: Commit Action Status
+                name: Check model score
                 uses: LouisBrunner/checks-action@v1.1.1
                 with:
-                    name: Commit Action Status
+                    name: Check model score
                     conclusion: ${{ job.status }}
                     sha: ${{ steps.sharef.outputs.sha }}
                     token: ${{ secrets.GITHUB_TOKEN }}
