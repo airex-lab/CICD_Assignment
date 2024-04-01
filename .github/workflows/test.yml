@@ -40,14 +40,14 @@ jobs:
                     echo "Score:"
                     echo "$OUTPUT"
                     if [[ `echo "$OUTPUT 0.40" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
-    test:
+    testing:
         runs-on: ubuntu-latest
         steps:
             - 
-                name: Test
+                name: Test model score
                 uses: LouisBrunner/checks-action@v1.1.1
                 with:
-                    name: Test
+                    name: Test model score
                     conclusion: ${{ job.status }}
                     sha: ${{ steps.sharef.outputs.sha }}
                     token: ${{ secrets.GITHUB_TOKEN }}
