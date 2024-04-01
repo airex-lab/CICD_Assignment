@@ -39,12 +39,13 @@ jobs:
                     OUTPUT=$(docker run ${{ secrets.DOCKERHUB_USERNAME }}/score_test:v1)
                     echo "Score:"
                     echo "$OUTPUT"
-                    if [[ `echo "$OUTPUT 0.30" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+                    if [[ `echo "$OUTPUT 0.40" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
         
             - 
                 name: Commit Action Status
                 uses: LouisBrunner/checks-action@v1.1.1
                 with:
+                    name: Commit Action Status
                     sha: ${{ steps.sharef.outputs.sha }}
                     token: ${{ secrets.GITHUB_TOKEN }}
         
