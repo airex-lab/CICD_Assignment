@@ -11,6 +11,16 @@ jobs:
     evaluate:
         runs-on: ubuntu-latest
         steps:
+            - 
+                name: Recognize sha ref
+                id: sharef
+                run: |
+                    if [ "$EVENT" == 'workflow_run' ]
+                    then
+                    echo "::set-output name=sha::$(echo ${{github.event.workflow_run.head_sha}})"
+                env:
+                    EVENT: ${{ github.event_name }}
+                    REF: ${{ github.ref }}
             -
                 name: Login to Docker Hub
                 uses: docker/login-action@v3
@@ -29,4 +39,11 @@ jobs:
                     echo "Score:"
                     echo "$OUTPUT"
                     if [[ `echo "$OUTPUT 0.40" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+        
+            - 
+                name: Commit Action Status
+                uses: LouisBrunner/checks-action@v1.1.1
+                with:
+                    sha: ${{ steps.sharef.outputs.sha }}
+                    token: ${{ secrets.GITHUB_TOKEN }}
         
