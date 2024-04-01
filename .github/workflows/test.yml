@@ -17,7 +17,8 @@ jobs:
                 run: |
                     if [ "$EVENT" == 'workflow_run' ]
                     then
-                    echo "::set-output name=sha::$(echo ${{github.event.workflow_run.head_sha}})"
+                        echo "::set-output name=sha::$(echo ${{github.event.workflow_run.head_sha}})"
+                    fi
                 env:
                     EVENT: ${{ github.event_name }}
                     REF: ${{ github.ref }}
