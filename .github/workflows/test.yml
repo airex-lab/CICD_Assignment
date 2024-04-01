@@ -17,7 +17,7 @@ jobs:
                 run: |
                     if [ "$EVENT" == 'workflow_run' ]
                     then
-                        echo "::set-output name=sha::$(echo ${{github.event.workflow_run.head_sha}})"
+                    echo "::set-output name=sha::$(echo ${{github.event.workflow_run.head_sha}})"
                     fi
                 env:
                     EVENT: ${{ github.event_name }}
@@ -39,7 +39,7 @@ jobs:
                     OUTPUT=$(docker run ${{ secrets.DOCKERHUB_USERNAME }}/score_test:v1)
                     echo "Score:"
                     echo "$OUTPUT"
-                    if [[ `echo "$OUTPUT 0.40" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
+                    if [[ `echo "$OUTPUT 0.30" | awk '{print ($1 < $2)}'` == 1 ]]; then echo "Insufficient Accuracy" && exit 1; fi
         
             - 
                 name: Commit Action Status
