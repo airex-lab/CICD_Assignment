@@ -3,6 +3,9 @@ from sklearn.linear_model import LogisticRegression
 import pickle
 import numpy as np
 
+#Introduce a syntax error due to missing closing parenthesis
+print("This will cause an error"
+
 df = pd.read_csv("data/train.csv")
 X = df.drop(columns=['Disease']).to_numpy()
 y = df['Disease'].to_numpy()
