@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t sambandh/cicd_assignment:v1 .
+        run: docker build -f Docker-file -t sambandh/cicd_assignment:v1 .
 
       - name: Push Docker image to registry
         run: docker push sambandh/cicd_assignment:v1
