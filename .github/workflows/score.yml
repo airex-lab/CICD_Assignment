@@ -1,12 +1,9 @@
 name: Check Minimum Score
 
-on :
-  pull_request:
-    branches: [ "main" ]
-    paths-ignore:
-      - 'data/**'
-      - 'requirements.txt'
-      - 'README.md'
+on:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
