@@ -1,17 +1,22 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import GaussianNB
 import pickle
 import numpy as np
 
-df = pd.read_csv("data/train.csv"
+# Load the dataset
+df = pd.read_csv("data/train.csv")
+
+# Features and original labels
 X = df.drop(columns=['Disease']).to_numpy()
 y = df['Disease'].to_numpy()
-labels = np.sort(np.unique(y))
-y = np.array([np.where(labels == x) for x in y]).flatten()
 
-#model = LogisticRegression().fit(X, y)
-model = GaussianNB().fit(X, y)
+# Create a shuffled version of the labels to disrupt the label-feature relationship
+np.random.seed(0)  # Ensure reproducibility
+shuffled_y = np.random.permutation(y)
 
+# Train the model on the disrupted dataset
+model = LogisticRegression(max_iter=1000).fit(X, shuffled_y)
+
+# Save the model
 with open("model.pkl", 'wb') as f:
     pickle.dump(model, f)
