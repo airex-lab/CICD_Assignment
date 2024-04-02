@@ -12,5 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copying the repository into the container
 COPY . .
 
-# Running the training and testing script
-RUN python train.py && python test.py
+# Running the training script
+RUN python train.py
+
+#Running and testing script
+CMD ["python", "test.py"]
