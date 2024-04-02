@@ -10,7 +10,7 @@ y = df['Disease'].to_numpy()
 labels = np.sort(np.unique(y))
 y = np.array([np.where(labels == x) for x in y]).flatten()
 
-better_score = 0
+better_score = 1
 if better_score == 1:
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
