@@ -24,7 +24,7 @@ jobs:
 
       - name: Run and Test Docker container
         run: |
-          OUTPUT=$(docker run sambandh/cicd_assignment:v1)
+          OUTPUT=$(docker run sambandh/cicd_assignment:v1 | tail -n 1)
           echo "Score :"
           echo "$OUTPUT"
           if [[ $(echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}') == 1 ]]; then
