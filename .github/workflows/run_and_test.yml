@@ -19,11 +19,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Pull Docker image from registry
-        run: docker pull sambandh/CICD_Assignment:v1
+        run: docker pull sambandh/cicd_assignment:v1
 
       - name: Run and Test Docker container
         run: |
-          OUTPUT=$(docker run sambandh/CICD_Assignment:v1)
+          OUTPUT=$(docker run sambandh/cicd_assignment:v1)
           echo "Score = $OUTPUT"
           if [[ $(echo "$OUTPUT 0.50" | awk '{print ($1 < $2)}') == 1 ]]; then
             echo "FAILED : Score is less than 0.50"
